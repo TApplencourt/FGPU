@@ -1,12 +1,11 @@
 module prim
-  use, intrinsic :: iso_c_binding
   implicit none
   integer :: nx = 10
   integer :: ny = 10
   integer :: nz = 10
 
   type prim_type
-    real(c_double), allocatable, dimension(:,:,:) :: v1
+    double precision, allocatable, dimension(:,:,:) :: v1
   contains 
     procedure :: setup => setup_prim
   end type prim_type
@@ -28,7 +27,6 @@ end module objects
 
 
 program testmap
-  use, intrinsic :: iso_c_binding
   use objects
   implicit none
     
