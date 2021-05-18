@@ -13,13 +13,12 @@ module prim
   end type prim_type
 end module prim
 
-
 program testmap
   ! modified from github.com/LLNL/FGPU/tree/master/openmp/target_map/arrays_of_structs
   use prim
   implicit none
   logical :: almost_equal  
-  type(prim_type), target  ::    prim_data(1:4)
+  type(prim_type), target  ::    prim_data(1:1)
   type(prim_type), pointer ::    prim_ptr
     
   ! set prim_ptr to point to first element of prim_data
@@ -35,9 +34,9 @@ program testmap
   !$omp target enter data map(to:prim_ptr%v1)
 
   ! modify data on device 
-  !$omp target data use_device_ptr(prim_ptr) 
+  !$omp target 
   prim_ptr%v1(1) = 1.0D0
-  !$omp end target data
+  !$omp end
   
   ! map data to host
   !$omp target exit data map(from:prim_ptr%v1)
