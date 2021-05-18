@@ -36,7 +36,7 @@ program testmap
   ! modify data on device 
   !$omp target 
   prim_ptr%v1(1) = 1.0D0
-  !$omp end
+  !$omp end target
   
   ! map data to host
   !$omp target exit data map(from:prim_ptr%v1)
